@@ -5,7 +5,7 @@ import time
 class VideoWriterWidget(object):
     def __init__(self, video_file_name, src=0):
         # Create a VideoCapture object
-        self.frame_name = src
+        self.frame_name = str(src)
         self.video_file = video_file_name
         self.video_file_name = video_file_name + '.avi'
         self.capture = cv2.VideoCapture(src)
