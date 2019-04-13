@@ -19,7 +19,7 @@ def contourIntersect(original_image, contour1, contour2):
     intersection = np.logical_and(image1, image2)
     
     # Check if there was a '1' in the intersection array
-    return True if True in intersection else False
+    return intersection.any()
 
 original_image = cv2.imread("base.png")
 image = original_image.copy()
