@@ -29,7 +29,9 @@ cY = int(M["m01"] / M["m00"])
 
 cv2.circle(image, (cX, cY), 5, (36, 255, 12), -1)
 
-image[int(cY - h/2):int(cY+h/2), cX] = (36, 255, 12)
+# To draw line you can use cv2.line or numpy slicing
+cv2.line(image, (x + int(w/2), y), (x + int(w/2), y+h), (0, 0, 255), 3)
+# image[int(cY - h/2):int(cY+h/2), cX] = (36, 255, 12)
 
 # show the output image
 cv2.imshow("Image", image)
