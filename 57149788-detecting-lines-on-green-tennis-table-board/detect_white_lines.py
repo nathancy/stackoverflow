@@ -57,4 +57,3 @@ cv2.imwrite('dilate_horizontal.png', dilate_horizontal)
 cv2.imwrite('mask.png', mask)
 cv2.imwrite('image.png', image)
 cv2.waitKey()
-
