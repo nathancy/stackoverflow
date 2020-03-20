@@ -13,6 +13,8 @@ Each question folder contains an `<id>`, if you want to find the original post u
 https://stackoverflow.com/questions/<id>
 ```
 
+I don't provide private support. Just [ask a new question](https://stackoverflow.com/questions/ask) where many other eyes will see it!
+
 ## Donate
 
 If this project helped you reduce development time, you can give me a cup of :coffee: :smile:
