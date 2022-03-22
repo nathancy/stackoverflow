@@ -1,18 +1,16 @@
-from skimage.measure import compare_ssim
+from skimage.metrics import structural_similarity
 import cv2
 import numpy as np
 
 before = cv2.imread('left.jpg')
 after = cv2.imread('right.jpg')
 
-cv2.imshow('original', before)
-
 # Convert images to grayscale
 before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
 after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
 
 # Compute SSIM between two images
-(score, diff) = compare_ssim(before_gray, after_gray, full=True)
+(score, diff) = structural_similarity(before_gray, after_gray, full=True)
 print("Image similarity", score)
 
 # The diff image contains the actual image differences between the two images
@@ -29,12 +27,11 @@ contours = contours[0] if len(contours) == 2 else contours[1]
 
 mask = np.zeros(before.shape, dtype='uint8')
 filled_after = after.copy()
-diff_contour = diff.copy()
+
 for c in contours:
     area = cv2.contourArea(c)
     if area > 40:
         x,y,w,h = cv2.boundingRect(c)
-        cv2.rectangle(diff_contour, (x, y), (x + w, y + h), (36,255,12), 2)
         cv2.rectangle(before, (x, y), (x + w, y + h), (36,255,12), 2)
         cv2.rectangle(after, (x, y), (x + w, y + h), (36,255,12), 2)
         cv2.drawContours(mask, [c], 0, (0,255,0), -1)
@@ -43,7 +40,6 @@ for c in contours:
 cv2.imshow('before', before)
 cv2.imshow('after', after)
 cv2.imshow('diff',diff)
-cv2.imshow('diff_contour',diff_contour)
 cv2.imshow('mask',mask)
 cv2.imshow('filled after',filled_after)
 cv2.waitKey(0)
